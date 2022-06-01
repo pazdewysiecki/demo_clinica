@@ -1,1 +1,1 @@
-web: gunicorn suarezhermanos.wsgi
+web: gunicorn clinica.wsgi
