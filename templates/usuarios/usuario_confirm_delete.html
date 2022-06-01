@@ -1,0 +1,14 @@
+{% extends 'home.html' %}
+{% block titulo %}
+    confirmación de eliminación de usuarios
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block body %}
+    <form style="text-align: center; " method="post">
+        {% csrf_token %}
+        <p><strong>¿Desea eliminar el registro {{ object }}?</strong></p>
+        <button type="submit">Confirmar</button>
+    </form>
+{% endblock body %}
+

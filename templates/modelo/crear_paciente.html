@@ -1,0 +1,30 @@
+{% extends 'home.html' %}
+{% block titulo %}
+    creacion de paciente
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block body %}
+</head>
+<body>
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Crear pacientes</h2>
+            </div>
+            <form action="{%url 'modelo:crear_paciente' %}" method="POST">
+                {% csrf_token %}
+                <div class="modal-body">
+                    {{ form.as_p }}
+                </div>
+                <div class="modal-footer">
+                    <a href="{% url 'modelo:listar_paciente'%}" button class="btn btn-danger" type="button" data-dismiss = "modal">Cancelar</a></button>
+                    <button class="btn btn-dark" type="submit">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+<body>
+{% endblock body %}
+
+

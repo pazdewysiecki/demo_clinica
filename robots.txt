@@ -1,0 +1,77 @@
+# https://technicalseo.com/seo-tools/robots-txt/
+User-agent: *
+Disallow:
+Crawl-delay: 60 # 60 segundos entre cada request
+Visit-time: 0300-1200 # 0:00 am a 9:00 am GMT-3
+Request-rate: 6/60m # permite indexar 6 documentos cada 60 minutos
+Request-rate: 3/60m 1200-0300 # permite indexar 3 documentos cada 60 minutos entre las 9:00 am a 0:00 am GMT-3
+
+Disallow: /cgi-bin/
+Disallow: /admin/
+Disallow: /*.sql$
+
+# Joomla
+Disallow: /administrator/
+Disallow: /cache/
+Disallow: /cli/
+Disallow: /components/
+Disallow: /images/
+Disallow: /includes/
+Disallow: /installation/
+Disallow: /language/
+Disallow: /libraries/
+Disallow: /logs/
+Disallow: /media/
+Disallow: /modules/
+Disallow: /plugins/
+Disallow: /templates/
+Disallow: /tmp/
+
+Disallow: /*/administrator/
+Disallow: /*/cache/
+Disallow: /*/cli/
+Disallow: /*/components/
+Disallow: /*/images/
+Disallow: /*/includes/
+Disallow: /*/installation/
+Disallow: /*/language/
+Disallow: /*/libraries/
+Disallow: /*/logs/
+Disallow: /*/media/
+Disallow: /*/modules/
+Disallow: /*/plugins/
+Disallow: /*/templates/
+Disallow: /*/tmp/
+
+# Wordpress
+Disallow: /xmlrpc.php
+Disallow: /wp-admin/
+Disallow: /wp-includes/
+Disallow: /wp-content/plugins/
+Disallow: /wp-content/cache/
+Disallow: /wp-content/themes/
+
+Disallow: /*/xmlrpc.php
+Disallow: /*/wp-admin/
+Disallow: /*/wp-includes/
+Disallow: /*/wp-content/plugins/
+Disallow: /*/wp-content/cache/
+Disallow: /*/wp-content/themes/
+
+# Bloqueo de las URL dinamicas
+Disallow: /*?
+ 
+# Bloqueo de busquedas
+Disallow: /?s= 
+Disallow: /search
+
+# Bloqueo de trackbacks
+Disallow: /trackback
+Disallow: /*trackback
+Disallow: /*trackback*
+Disallow: /*/trackback
+
+# Permitir Google Webmaster Tool
+User-agent: Googlebot
+Allow: /*.js$
+Allow: /*.css$

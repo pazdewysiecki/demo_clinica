@@ -1,0 +1,97 @@
+{% extends 'home.html' %}
+{% block titulo %}
+    Listado de Trámites por cliente
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+
+
+{% block body %}
+&nbsp              
+&nbsp              
+&nbsp              
+&nbsp              
+<div class="container">
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form method="get">
+          {% csrf_token %}
+              <div id ="custom-search-input">
+              <div class="input-group">
+                  <input type="text" class="form-control bg-light border-0 small" placeholder="Buscar.." name="buscar" value="">
+                  <div class="input-group-append">
+                      <button class="btn btn-primary-dark" type="submit">
+                      <i class="fas fa-search fa-sm"></i>
+                      </button>
+                 <div>
+              </div>
+              </div>
+        </form>
+    </div>
+</div>
+</div>
+{% if resultado %}
+    <table id="lista_autorizaciones" class="thead-dark" style= "width: 75%, " >
+                {% for paciente in pacientes %}
+                            <th scope="col">Nombre del paciente</th>
+                            <th scope="col">Código del paciente</th>
+                            <th scope="col">DNI</th>
+                            <td>{{paciente.nombre_paciente}}</td>
+                            <td>{{paciente.id}}</td>
+                            <td>{{paciente.dni_paciente}}</td>   
+                {% endfor %}
+
+                {% for cardiologo in cardiologos %}
+                            <th scope="col">Autorización Cardiólogo</th>
+                            <td>{{cardiologo.estado_cardiologo}}</td>
+                {% endfor %}
+
+                {% for PreQuirurgico in PreQuirurgicos %}
+                            <th scope="col">Autorización Prequirúrgica</th>
+                            <td>{{PreQuirurgico.estado_prequirurgico}}</td>
+                {% endfor %}      
+    </table>
+{% else %}
+        <p>No se encontraron resultados</p>
+{% endif %}
+
+    <div class="modal fade" id="creacionclientetramite" role="dialog"> 
+    </div>
+    <div class="modal fade" id="ediciontramitecliente" role="dialog"> 
+    </div>
+    <div class="modal fade" id="buscarclientes" role="dialog"> 
+    </div>
+    <div class="modal fade" id="creacionclientetramite_" role="dialog"> 
+    </div>
+
+
+
+{% endblock body %}
+
+
+
+{%block extrajs %}
+<script type="text/javascript">
+    var $ = jQuery.noConflict();
+    function abrir_modal_creacionclientetramite(url){
+    $('#creacionclientetramite').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal_ediciontramitecliente(url){
+    $('#ediciontramitecliente').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal_buscarclientes(url){
+    $('#buscarclientes').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    function abrir_modal__creacionclientetramite(url){
+    $('#creacionclientetramite_').load(url, function(){
+        $(this).modal('show');
+    });
+    }
+    </script>
+{%endblock extrajs %}
+

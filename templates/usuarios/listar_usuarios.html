@@ -1,0 +1,123 @@
+{% extends 'home.html' %}
+{% load static %}
+{% block titulo %}
+    Listado de usuarios
+{% endblock titulo %}
+{% block barra %}
+{% endblock barra %}
+{% block body %}
+&nbsp
+<div><button style="margin-left: 10px" class="btn btn-outline-dark" type="button" onclick="abrir_modal_creacionusuario('{% url 'usuarios:registrar__usuarios'%}')">Crear nuevo usuario</button>
+&nbsp  
+&nbsp
+&nbsp
+<div class="container">
+    <div class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
+        <form method="get">
+          {% csrf_token %}
+              <div id ="custom-search-input">
+              <div class="input-group">
+                  <div class="input-group-append">
+                 <div>
+              </div>
+              </div>
+        </form>
+    </div>
+</div>
+</div>
+    {% if usuarios %}
+    &nbsp
+    <table id="lista_usuarios" class="thead-dark" style= "width: 75%, " >
+        <thead>
+            <th >Nombre del usuario</th>
+            <th >Código</th>
+            <th >Especialidad</th>
+            <th >Mail</th>
+            <th >Editar</th>
+            <th >Eliminar</th>
+        </thead>
+        <tbody>
+            {% for usuario in usuarios %}
+            <tr>
+                <td>{{usuario.nombre}}</td>
+                <td>{{usuario.id}}</td>
+                <td>{{usuario.especialidad}}</td>
+                <td>{{usuario.username}}</td>
+                <td>
+                    <button class="btn btn-dark" type="button" onclick="abrir_modal_edicionusuario('{% url 'usuarios:editar_usuarios' usuario.id %}')">Editar</a>
+                </td>
+                <td>
+                    <a href="{% url 'usuarios:eliminar_usuarios' usuario.id %}" button class="btn btn-danger" type="button" data-dismiss = "modal">Eliminar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <h2>No existen usuarios registrados</h2>
+    {% endif %}
+
+
+    <div class="modal fade" id="creacionusuario" role="dialog"> 
+    </div>
+    <div class="modal fade" id="creacionusuario_" role="dialog"> 
+    </div>
+    <div class="modal fade" id="edicionusuario" role="dialog"> 
+    </div>
+    {% endblock body %}
+    {%block extrajs %}
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+                <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.5/af-2.3.7/b-2.2.2/date-1.1.2/fc-4.0.2/r-2.2.9/datatables.min.js"></script>
+                <script>
+                    var $ = jQuery.noConflict();
+                    $(document).ready(function(){
+                                $('#lista_usuarios').DataTable({
+                                    language: {
+                                            decimal: "",
+                                            emptyTable: "No hay información",
+                                            info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+                                            infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+                                            infoFiltered: "(Filtrado de _MAX_ total entradas)",
+                                            infoPostFix: "",
+                                            thousands: ",",
+                                            lengthMenu: "Mostrar _MENU_ Entradas",
+                                            loadingRecords: "Cargando...",
+                                            processing: "Procesando...",
+                                            search: "Buscar:",
+                                            zeroRecords: "Sin resultados encontrados",
+                                            paginate: {
+                                            first: "Primero",
+                                            last: "Ultimo",
+                                            next: "Siguiente",
+                                            previous: "Anterior",
+                                            }
+                                        },
+                                    lengthMenu: [[10,50,100],[10,50,100]],
+    
+                            })
+                    })
+
+                </script>
+                <script type="text/javascript">
+                            var $ = jQuery.noConflict();
+                            function abrir_modal_edicionusuario(url){
+                            $('#edicionusuario').load(url, function(){
+                                $(this).modal('show');
+                            });
+                            }
+                            function abrir_modal_creacionusuario(url){
+                            $('#creacionusuario').load(url, function(){
+                                $(this).modal('show');
+                            });
+                            }
+                            function abrir_modal__creacionusuario(url){
+                            $('#creacionusuario_').load(url, function(){
+                                $(this).modal('show');
+                            });
+                            }
+                </script>
+
+
+    {%endblock extrajs %}
+
+

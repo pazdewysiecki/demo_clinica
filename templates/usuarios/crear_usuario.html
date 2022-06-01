@@ -1,0 +1,49 @@
+{% extends 'login.html' %}
+{% load static %}
+{% block titulo %}
+    Crear Usuarios
+{% endblock titulo %}
+{% block barra %}
+&nbsp
+&nbsp
+&nbsp
+&nbsp
+
+<header class="v-header header">
+    <div class="container clearfix nopadding">
+        <div id="logo"><a href="{% url 'home'%}"><img src="{% static 'img/clinica.png' %}" alt="logo" width="150" height="35"></a></div>
+        <div class="menu-button  m-menu-button">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav a-nav clearfix">
+            <ul >
+            </ul>
+        </nav>
+    </div>
+</header>
+&nbsp
+&nbsp
+&nbsp
+&nbsp
+&nbsp
+&nbsp
+&nbsp
+{% endblock barra %}
+{% block body %}
+    
+    <form method="POST">
+        {% csrf_token %}
+            {{ form.as_p }}
+            <div class=""> 
+                <button class="btn btn-primary-dark" type="submit" >Confirmar registro</button>
+            </div>"
+    <form>
+
+
+
+
+
+
+{% endblock body %}

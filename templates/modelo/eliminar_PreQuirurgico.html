@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+{% block titulo %}
+    eliminación de autorización Prequirúrgica
+{% endblock titulo %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    <h2>¿Desea eliminar el registro {{  PreQuirurgico.id }} ?</h2>
+        <button type="submit">Eliminar</button>
+        
+</form>
+{% endblock body %}

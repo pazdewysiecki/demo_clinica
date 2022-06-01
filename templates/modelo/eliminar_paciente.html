@@ -1,0 +1,12 @@
+{% extends 'home.html' %}
+{% block titulo %}
+    eliminación de paciente
+{% endblock titulo %}
+{% block body %}
+<form method="POST">
+    {% csrf_token %}
+    <h2>¿Desea eliminar el registro {{ paciente.nombre_paciente }} ?</h2>
+        <button type="submit">Eliminar</button>
+        
+</form>
+{% endblock body %}
